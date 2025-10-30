@@ -2,6 +2,7 @@
 onInit()
 
 function onInit() {
+    getBooks()
     render(gBooks)
 }
 
@@ -32,5 +33,12 @@ function onUpdateBook(id, ev) {
     ev.stopPropagation()
     const newPrice = +prompt('Enter new price')
     updatePrice(id, newPrice)
+    render(gBooks)
+}
+
+function onAddBook() {
+    const newBookName = prompt('Enter the title of the new book')
+    const newBookPrice = +prompt('Enter the price of the new book')
+    createBook({ title: newBookName, price: newBookPrice })
     render(gBooks)
 }

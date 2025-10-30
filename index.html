@@ -7,20 +7,24 @@
         <link rel="stylesheet" href="css/bookstore.css" />
     </head>
     <body>
-        <table>
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Price</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
 
-            <tbody>
+                <tbody></tbody>
+            </table>
+        </div>
 
-            </tbody>
-            
-        </table>
+        <div class="add-book-container">
+            <button class="add-book" onclick="onAddBook()">Add a Book</button>
+        </div>
+        
         <script src="js/utils.js"></script>
         <script src="js/book.service.js"></script>
         <script src="js/book.controller.js"></script>

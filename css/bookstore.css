@@ -1,11 +1,15 @@
 body {
     background-color: antiquewhite;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.table-container {
+    height: 60vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0; 
-    font-family: Arial, sans-serif; 
 }
 
 table {
@@ -16,7 +20,7 @@ table {
 }
 
 button {
-    all:unset;
+    all: unset;
 }
 
 td,
@@ -55,13 +59,44 @@ td.actions > * {
 }
 
 .read {
-    background-color: rgb(5, 138, 246);
+    background-color: rgba(5, 138, 246, 1);
+}
+
+.read:hover {
+    background-color: rgba(5, 138, 246, .5);
 }
 
 .update {
-    background-color: orange;
+    background-color: rgb(255, 165, 0, 1);
+}
+.update:hover {
+    background-color: rgb(255, 165, 0, .5);
 }
 
 .delete {
-    background-color: orangered;
+    background-color: red;
+}
+.delete:hover {
+    background-color: rgb(255, 0, 0, .5);
+}
+
+.add-book-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-book {
+    text-align: center;
+    background-color: rgb(236, 12, 236, 1);
+    margin: auto;
+    padding: 20px;
+    font-weight: bold;
+    border: 2px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.add-book:hover {
+        background-color: rgb(236, 12, 236, .5);
 }

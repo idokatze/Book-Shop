@@ -1,6 +1,6 @@
 'use script'
 
-var gBooks = [
+var gHardCodedLibrary = [
     { title: 'Alice in Wonderland', price: 120 },
     { title: '1984', price: 100 },
     { title: 'The Lord of the Rings', price: 180 },
@@ -8,16 +8,11 @@ var gBooks = [
     { title: 'The Great Gatsby', price: 110 },
 ]
 
+var gBooks = []
+
 function getBooks() {
-    return gBooks
+    gHardCodedLibrary.forEach((book) => createBook(book))
 }
-
-function createBooks() {
-    gBooks = gBooks.map((book) => createBook(book))
-    return gBooks
-}
-
-createBooks()
 
 function createBook(book) {
     const bookItem = {
@@ -26,15 +21,16 @@ function createBook(book) {
         price: book.price,
         imgUrl: '',
     }
-    return bookItem
+
+    gBooks.push(bookItem)
 }
 
 function removeBook(id) {
     const bookIdx = gBooks.findIndex((book) => book.id === id)
-    gBooks.splice(bookIdx, 1)
+    if (bookIdx !== -1) gBooks.splice(bookIdx, 1)
 }
 
 function updatePrice(id, newPrice) {
     const bookIdx = gBooks.findIndex((book) => book.id === id)
-    gBooks[bookIdx].price = newPrice
+    if (bookIdx !== -1) gBooks[bookIdx].price = newPrice
 }
