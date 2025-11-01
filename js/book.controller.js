@@ -13,7 +13,7 @@ function render(books) {
                 <td>${book.title}</td>
                 <td>${book.price}</td>
                 <td class="actions">
-                    <button class="read" onclick="displayModal('${book.id}', event)">Read</button>
+                    <button class="details" onclick="displayModal('${book.id}', event)">Details</button>
                     <button class="update" onclick="onUpdateBook('${book.id}', event)">Update</button>
                     <button class="delete" onclick="onRemoveBook('${book.id}', event)">Delete</button>
                 </td>
@@ -32,7 +32,7 @@ function onRemoveBook(id, ev) {
 function onUpdateBook(id, ev) {
     ev.stopPropagation()
     const newPrice = +prompt('Enter new price')
-    updatePrice(id, newPrice)
+    if (newPrice !== 0) updatePrice(id, newPrice)
     render(gBooks)
 }
 
@@ -41,4 +41,22 @@ function onAddBook() {
     const newBookPrice = +prompt('Enter the price of the new book')
     createBook({ title: newBookName, price: newBookPrice })
     render(gBooks)
+}
+
+function displayModal(id) {
+    const currBook = gBooks.find((book) => id === book.id)
+    const elBackdrop = document.querySelector('.backdrop')
+    const elModalTitle = document.querySelector('.modal-title')
+    const elModalInfo = document.querySelector('.modal-info')
+
+    elBackdrop.classList.add('opaque')
+
+    elModalTitle.innerText = currBook.title
+    elModalInfo.innerText = JSON.stringify(currBook, null, 4)
+}
+
+function closeModal(event) {
+    event.stopPropagation() 
+    const elBackdrop = document.querySelector('.backdrop')
+    elBackdrop.classList.remove('opaque')
 }

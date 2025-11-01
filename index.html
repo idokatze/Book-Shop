@@ -7,24 +7,36 @@
         <link rel="stylesheet" href="css/bookstore.css" />
     </head>
     <body>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Price</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
+        <main>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
 
-                <tbody></tbody>
-            </table>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="add-book-container">
+                <button class="add-book" onclick="onAddBook()">
+                    Add a Book
+                </button>
+            </div>
+        </main>
+
+        <div class="backdrop">
+            <section class="modal">
+                <button onclick="closeModal(event)" class="btn-close">x</button>
+                <div class="modal-title"></div>
+                <div class="modal-info"></div>
+            </section>
         </div>
 
-        <div class="add-book-container">
-            <button class="add-book" onclick="onAddBook()">Add a Book</button>
-        </div>
-        
         <script src="js/utils.js"></script>
         <script src="js/book.service.js"></script>
         <script src="js/book.controller.js"></script>

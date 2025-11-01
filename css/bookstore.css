@@ -58,26 +58,26 @@ td.actions > * {
     cursor: pointer;
 }
 
-.read {
+.details {
     background-color: rgba(5, 138, 246, 1);
 }
 
-.read:hover {
-    background-color: rgba(5, 138, 246, .5);
+.details:hover {
+    background-color: rgba(5, 138, 246, 0.5);
 }
 
 .update {
     background-color: rgb(255, 165, 0, 1);
 }
 .update:hover {
-    background-color: rgb(255, 165, 0, .5);
+    background-color: rgb(255, 165, 0, 0.5);
 }
 
 .delete {
     background-color: red;
 }
 .delete:hover {
-    background-color: rgb(255, 0, 0, .5);
+    background-color: rgb(255, 0, 0, 0.5);
 }
 
 .add-book-container {
@@ -98,5 +98,73 @@ td.actions > * {
 }
 
 .add-book:hover {
-        background-color: rgb(236, 12, 236, .5);
+    background-color: rgb(236, 12, 236, 0.5);
+}
+
+.backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(177, 177, 177, 0.6);
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+}
+
+.modal {
+    width: 40vw;
+    height: 50vh;
+
+    display: grid;
+    position: relative;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 4fr;
+    gap: 0.5em;
+
+    padding: 1em;
+    background-color: rgb(252, 252, 252);
+    border: 1px solid darkgrey;
+    border-radius: 10px;
+    box-shadow: 3px 3px 6px rgb(173 173 173);
+    color: #121212;
+    transition: opacity 0.5s ease, z-index 0s 0.5s;
+}
+
+.modal .btn-close {
+    display: flex;
+    border: 2px solid lightgrey;
+    border-radius: 50%;
+    box-shadow: 3px 3px 6px rgb(173 173 173);
+    top: 0.5em;
+    right: 0.5em;
+    width: 1.5em;
+    height: 1.5em;
+
+    position: absolute;
+    scroll-margin-block-start: 0.25em;
+    margin-inline-end: 0.25em;
+
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.modal-title {
+    display: flex;
+    padding: 20px 0;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+}
+
+.opaque {
+    opacity: 1;
+    z-index: 10;
+    transition: opacity 0.5s ease, z-index 0s;
+    pointer-events: auto;
 }
