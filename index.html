@@ -8,18 +8,26 @@
     </head>
     <body>
         <main>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Price</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
+            <div class="grid-container">
+                <div class="table-grid">
+                    <div class="grid-header-row">
+                        <div class="grid-header">Title</div>
+                        <div class="grid-header">Price</div>
+                        <div class="grid-header actions-header">Actions</div>
+                    </div>
 
-                    <tbody></tbody>
-                </table>
+                    <div class="grid-body">
+                        <!-- Dynamic rows go here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-container">
+                <input
+                    type="text"
+                    placeholder="Search books by title"
+                    onkeydown="if (event.key === 'Enter') onFilterBooks(this.value)"
+                />
             </div>
 
             <div class="add-book-container">

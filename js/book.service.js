@@ -34,18 +34,37 @@ var gHardCodedLibrary = [
 ]
 
 var gBooks = []
+var gFilterBy = 'all'
 const STORAGE_KEY = 'booksDB'
 
 function getBooks() {
     gBooks = loadFromStorage(STORAGE_KEY)
 
     if (!gBooks || !gBooks.length) {
-        console.log('hi')
         gBooks = []
         gHardCodedLibrary.forEach((book) => createBook(book))
     }
-    
+
     _saveBooks()
+}
+
+function getBooksToDisplay(filter) {
+    console.log('Filter:', filter)
+    if (filter === '') return gBooks
+
+    const lowerFilter = filter.toLowerCase()
+    const filteredBooks = gBooks.filter((book) => {
+        const match = book.title.toLowerCase().includes(lowerFilter)
+        console.log(`Checking "${book.title}" → ${match}`)
+        return match
+    })
+
+    if (filteredBooks.length === 0) {
+        // alert('No books found')
+        return []
+    }
+
+    return filteredBooks
 }
 
 function createBook(book) {

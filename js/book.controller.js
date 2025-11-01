@@ -3,37 +3,46 @@ onInit()
 
 function onInit() {
     getBooks()
-    render(gBooks)
+    render()
 }
 
-function render(books) {
-    var strHTMLs = books.map(
+function render(filter = '') {
+    const booksToDisplay = getBooksToDisplay(filter)
+    const elGrid = document.querySelector('.grid-body')
+
+    var strHTMLs = booksToDisplay.map(
         (book) =>
-            ` <tr>
-                <td>${book.title}</td>
-                <td>${book.price}</td>
-                <td class="actions">
-                    <button class="details" onclick="displayModal('${book.id}', event)">Details</button>
-                    <button class="update" onclick="onUpdateBook('${book.id}', event)">Update Price</button>
-                    <button class="delete" onclick="onRemoveBook('${book.id}', event)">Delete</button>
-                </td>
-            </tr>`
+            `<div class="grid-cell">${book.title}</div>
+            <div class="grid-cell">$${book.price}</div>
+            <div class="grid-cell grid-cell-details">
+                <button class="details" onclick="displayModal('${book.id}', event)">Details</button>
+            </div>
+            <div class="grid-cell grid-cell-update">
+                <button class="update" onclick="onUpdateBook('${book.id}', event)">Update Price</button>
+            </div>
+            <div class="grid-cell grid-cell-delete">
+                <button class="delete" onclick="onRemoveBook('${book.id}', event)">Delete</button>
+            </div>`
     )
 
-    document.querySelector('tbody').innerHTML = strHTMLs.join('')
+    elGrid.innerHTML = strHTMLs.join('')
+}
+
+function onFilterBooks(searchText) {
+    render(searchText)
 }
 
 function onRemoveBook(id, ev) {
     ev.stopPropagation()
     removeBook(id)
-    render(gBooks)
+    render()
 }
 
 function onUpdateBook(id, ev) {
     ev.stopPropagation()
     const newPrice = +prompt('Enter new price')
     if (newPrice !== 0) updatePrice(id, newPrice)
-    render(gBooks)
+    render()
 }
 
 function onAddBook() {
@@ -41,8 +50,13 @@ function onAddBook() {
     const newBookAuthor = prompt(`Enter the author's name`)
     const newBookPrice = +prompt('Enter the price of the new book')
     const newBookImg = prompt('Enter the path to the cover artwork')
-    createBook({ title: newBookName, author: newBookAuthor, price: newBookPrice, imgUrl: newBookImg })
-    render(gBooks)
+    createBook({
+        title: newBookName,
+        author: newBookAuthor,
+        price: newBookPrice,
+        imgUrl: newBookImg,
+    })
+    render()
 }
 
 function displayModal(id) {
