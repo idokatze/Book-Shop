@@ -34,9 +34,18 @@ var gHardCodedLibrary = [
 ]
 
 var gBooks = []
+const STORAGE_KEY = 'booksDB'
 
 function getBooks() {
-    gHardCodedLibrary.forEach((book) => createBook(book))
+    gBooks = loadFromStorage(STORAGE_KEY)
+
+    if (!gBooks || !gBooks.length) {
+        console.log('hi')
+        gBooks = []
+        gHardCodedLibrary.forEach((book) => createBook(book))
+    }
+    
+    _saveBooks()
 }
 
 function createBook(book) {
@@ -47,15 +56,25 @@ function createBook(book) {
         price: book.price,
         imgUrl: book.imgUrl,
     }
+
     gBooks.push(bookItem)
+    _saveBooks()
 }
 
 function removeBook(id) {
     const bookIdx = gBooks.findIndex((book) => book.id === id)
     if (bookIdx !== -1) gBooks.splice(bookIdx, 1)
+
+    _saveBooks()
 }
 
 function updatePrice(id, newPrice) {
     const bookIdx = gBooks.findIndex((book) => book.id === id)
     if (bookIdx !== -1) gBooks[bookIdx].price = newPrice
+
+    _saveBooks()
+}
+
+function _saveBooks() {
+    saveToStorage(STORAGE_KEY, gBooks)
 }
