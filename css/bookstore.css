@@ -6,17 +6,17 @@ body {
 }
 
 .table-container {
-    height: 60vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 2rem 0;
 }
 
 table {
     table-layout: auto;
     width: auto;
     border: 1px solid black;
-    /* border-collapse: collapse; */
 }
 
 button {
@@ -84,6 +84,8 @@ td.actions > * {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 0.5rem;
+    margin-top: 0;
 }
 
 .add-book {
@@ -104,67 +106,89 @@ td.actions > * {
 .backdrop {
     position: fixed;
     inset: 0;
-    z-index: -1;
-    pointer-events: none;
-
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(177, 177, 177, 0.6);
+    background-color: rgba(30, 30, 30, 0.45);
+    pointer-events: none;
     opacity: 0;
-    transition: opacity 0.8s ease-out;
+    transition: opacity 280ms ease;
+    z-index: -1;
 }
 
 .modal {
     width: 40vw;
     height: 50vh;
-
-    display: grid;
     position: relative;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 4fr;
-    gap: 0.5em;
-
-    padding: 1em;
-    background-color: rgb(252, 252, 252);
-    border: 1px solid darkgrey;
-    border-radius: 10px;
-    box-shadow: 3px 3px 6px rgb(173 173 173);
-    color: #121212;
-    transition: opacity 0.5s ease, z-index 0s 0.5s;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    background-color: #fbfdff;
+    border: 1px solid #d7d9db;
+    border-radius: 12px;
+    color: #111;
+    box-shadow: 0 14px 40px rgba(20, 20, 20, 0.12),
+        0 6px 18px rgba(20, 20, 20, 0.08);
+    transition: transform 280ms cubic-bezier(0.22, 0.9, 0.2, 1),
+        opacity 280ms ease;
 }
 
 .modal .btn-close {
-    display: flex;
-    border: 2px solid lightgrey;
-    border-radius: 50%;
-    box-shadow: 3px 3px 6px rgb(173 173 173);
-    top: 0.5em;
-    right: 0.5em;
-    width: 1.5em;
-    height: 1.5em;
-
     position: absolute;
-    scroll-margin-block-start: 0.25em;
-    margin-inline-end: 0.25em;
-
+    top: 0.6rem;
+    right: 0.6rem;
+    width: 1.6em;
+    height: 1.6em;
+    display: flex;
     justify-content: center;
     align-items: center;
-
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: #ffffff;
+    box-shadow: 0 6px 14px rgba(20, 20, 20, 0.06);
     cursor: pointer;
+    transition: transform 180ms ease, background 180ms ease;
 }
 
 .modal-title {
-    display: flex;
-    padding: 20px 0;
+    text-align: center;
     font-weight: bold;
+    padding: 0.25rem 0;
+    color: black;
+    border-bottom: 1px solid black;
+}
+
+.modal-title span {
+    display: block;
+    color: black;
+}
+
+.modal-title .book-author {
+    font-size: 1rem;
+    font-weight: normal;
+    color: #555;
+    margin-top: 0.25rem;
+}
+
+.modal-info {
+    display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    padding: 0.75rem;
+}
+
+.modal-info img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
 }
 
 .opaque {
     opacity: 1;
     z-index: 10;
-    transition: opacity 0.5s ease, z-index 0s;
     pointer-events: auto;
+    transition: opacity 280ms ease, z-index 0s;
 }
